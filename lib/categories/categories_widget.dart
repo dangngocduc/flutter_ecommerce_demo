@@ -10,7 +10,7 @@ class _CategoriesWidgetState extends State<CategoriesWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.red,
+      color: Colors.lightGreen,
     );
   }
 }
