@@ -4,6 +4,8 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_shopping_demo/data/models/banner.dart';
 import 'package:flutter_shopping_demo/data/models/category.dart';
 import 'package:flutter_shopping_demo/widgets/category_widget.dart';
+import 'package:flutter_shopping_demo/widgets/product_widget.dart';
+import 'package:flutter_shopping_demo/widgets/slider/group_search_trend.dart';
 import 'package:flutter_shopping_demo/widgets/slider/slide_banner.dart';
 
 class HomeWidget extends StatefulWidget {
@@ -48,7 +50,7 @@ class _HomeWidgetState extends State<HomeWidget> {
 }
 
 class HomeBodyWidget extends StatefulWidget {
-  List<Category> listCategories = [
+  final List<Category> listCategories = [
     Category(title: "Deal hot", icon: "https://media-ak.static-adayroi.com/sys_master/images/banner/png/deal-ho-moi-ngay-1-min.png"),
     Category(title: "VinFast", icon: "https://media-ak.static-adayroi.com/sys_master/images/banner/png/vinfast-icon-1-min.png"),
     Category(title: "F1", icon: "https://media-ak.static-adayroi.com/sys_master/images/banner/png/dat-ve-f1-1-min.png"),
@@ -66,7 +68,7 @@ class HomeBodyWidget extends StatefulWidget {
   _HomeBodyWidgetState createState() => _HomeBodyWidgetState();
 }
 
-class _HomeBodyWidgetState extends State<HomeBodyWidget> {
+class _HomeBodyWidgetState extends State<HomeBodyWidget> with AutomaticKeepAliveClientMixin {
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
@@ -94,11 +96,26 @@ class _HomeBodyWidgetState extends State<HomeBodyWidget> {
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 5,
                   childAspectRatio: (width/5)/(width/5 + 32)
-                ))
+                )),
+            SliverToBoxAdapter(
+              child: GroupSearchTrendWidget(),
+            ),
+            SliverToBoxAdapter(
+              child: SlideWidget(
+                  [
+                    AppBanner(link: "https://media-ak.static-adayroi.com/0_0/80/images/hc0/h00/26500560355358.jpg", ratio: 103.0/40),
+                    AppBanner(link: "https://media-ak.static-adayroi.com/0_0/80/images/h46/h93/26500560486430.jpg", ratio: 103.0/40),
+                  ]
+              ),
+            ),
+            ProductsGroupListHoz()
           ]
       ),
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }
 
 
