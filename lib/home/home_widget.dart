@@ -108,7 +108,17 @@ class _HomeBodyWidgetState extends State<HomeBodyWidget> with AutomaticKeepAlive
                   ]
               ),
             ),
-            ProductsGroupListHoz()
+            ProductsGroupListHoz(),
+            SliverToBoxAdapter(
+              child: SlideWidget(
+                  [
+                    AppBanner(link: "https://media-ak.static-adayroi.com/0_0/80/images/h46/h93/26500560486430.jpg", ratio: 103.0/40),
+                    AppBanner(link: "https://media-ak.static-adayroi.com/sys_master/images/hd4/h4e/26500560683038.jpg", ratio: 103.0/40),
+                  ]
+              ),
+            ),
+            ProductsGroupListHoz(),
+
           ]
       ),
     );
