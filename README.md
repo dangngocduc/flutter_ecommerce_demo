@@ -7,5 +7,5 @@ Link Beta : https://betas.to/wq7XNMVt
 ## Getting Started
 |  ![Day1](demo/day1_home_ver2.png) | ![Day1](demo/day1_home_ver3.png)   | ![Day1](demo/day2_category.png)   |
 |---|---|---|
-|  ![Day2](demo/day2_cart.png) |   |   |
+|  ![Day2](demo/day2_cart.png) |  ![Day2](demo/day2_account.png) |   |
 |---|---|---|
