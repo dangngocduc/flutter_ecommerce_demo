@@ -48,7 +48,7 @@ class _HomePageState extends State<HomePage>
             shadowColor: Colors.black,
             shape: BorderDirectional(top: BorderSide(color: Colors.grey[200], width: 1)),
             elevation: 16.0,
-            child: Container(
+            child: SafeArea(child: Container(
               height: 60,
               color: Colors.white,
               child: Row(
@@ -59,7 +59,7 @@ class _HomePageState extends State<HomePage>
                   Expanded(child: BottomItemWidget(title: "Cá nhân", icon: Icons.account_circle, index: 3,)),
                 ],
               ),
-            ),
+            ), bottom: true, top: false,),
           ),
         ],
       ),
