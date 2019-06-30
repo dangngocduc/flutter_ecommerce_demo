@@ -2,7 +2,7 @@
 
 A new Flutter Application Shopping Demo
 
-Link Beta : https://betas.to/wq7XNMVt
+Link Beta : https://betas.to/Hs7KQrfn
 
 ## Getting Started
 |  ![Day1](demo/day1_home_ver2.png) | ![Day1](demo/day1_home_ver3.png)   | ![Day1](demo/day2_category.png)   |
