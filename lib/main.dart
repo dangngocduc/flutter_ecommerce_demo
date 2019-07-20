@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_shopping_demo/account/account_widget.dart';
+import 'package:flutter_shopping_demo/bloc/cart/cart_bloc.dart';
 import 'package:flutter_shopping_demo/carts/carts_widget.dart';
 import 'package:flutter_shopping_demo/categories/categories_widget.dart';
 import 'package:flutter_shopping_demo/home/home_widget.dart';
 import 'package:flutter_shopping_demo/widgets/bottom_item.dart';
+import 'package:provider/provider.dart';
 
 void main() => runApp(MyApp());
 
@@ -11,12 +13,17 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.red,
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider<CartBloc>.value(value: CartBloc())
+      ],
+      child: MaterialApp(
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          primarySwatch: Colors.red,
+        ),
+        home: HomePage(),
       ),
-      home: HomePage(),
     );
   }
 }
@@ -30,6 +37,7 @@ class _HomePageState extends State<HomePage>
     with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
+    CartBloc cartBloc = Provider.of<CartBloc>(context);
 
     return DefaultTabController(length: 4, child: Container(
       child: Column(
@@ -53,9 +61,9 @@ class _HomePageState extends State<HomePage>
               color: Colors.white,
               child: Row(
                 children: <Widget>[
-                  Expanded(child: BottomItemWidget(title: "Adayroi", icon: Icons.home, index: 0,)),
+                  Expanded(child: BottomItemWidget(title: "Adayroi", icon: Icons.home, index: 0)),
                   Expanded(child: BottomItemWidget(title: "Danh Mục", icon: Icons.category, index: 1,)),
-                  Expanded(child: BottomItemWidget(title: "Giỏ hàng", icon: Icons.shopping_cart, index: 2,)),
+                  Expanded(child: BottomItemWidget(title: "Giỏ hàng", icon: Icons.shopping_cart, index: 2, notification: cartBloc.getCounterCart(),)),
                   Expanded(child: BottomItemWidget(title: "Cá nhân", icon: Icons.account_circle, index: 3,)),
                 ],
               ),
