@@ -61,7 +61,9 @@ class DynamicTheme extends InheritedWidget {
 class CustomColor {
   final Color onBottomAppBarColor;
   final Color onBottomAppBarColorDisable;
+  final Color colorTextChipSearch;
 
-  CustomColor({this.onBottomAppBarColor, this.onBottomAppBarColorDisable});
+
+  CustomColor({this.onBottomAppBarColor, this.onBottomAppBarColorDisable, this.colorTextChipSearch});
 }
 

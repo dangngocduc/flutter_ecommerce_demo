@@ -6,6 +6,9 @@ class GroupSearchTrendWidget extends StatelessWidget {
     double width = MediaQuery.of(context).size.width;
 
     return Container(
+      decoration: ShapeDecoration(shape: RoundedRectangleBorder(
+          side: Divider.createBorderSide(context)
+      )),
       height: 64*2.0 + 36,
       child: Column(
         children: <Widget>[
@@ -38,6 +41,9 @@ class SearchTrendWidget extends StatelessWidget {
     double width = MediaQuery.of(context).size.width;
 
     return Container(
+      decoration: ShapeDecoration(shape: RoundedRectangleBorder(
+          side: Divider.createBorderSide(context)
+      )),
       padding: EdgeInsets.fromLTRB(16, 4, 8, 4),
       height: 64,
       width: width/2.0,

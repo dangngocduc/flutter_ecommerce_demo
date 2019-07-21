@@ -37,7 +37,7 @@ class IconButtonCart extends StatelessWidget {
       width: 48,
       child: Stack(
         children: <Widget>[
-          IconButton(icon: Icon(Icons.shopping_cart), onPressed: () {}),
+          IconButton(icon: Icon(Icons.shopping_cart, color: Theme.of(context).colorScheme.onPrimary,), onPressed: () {}),
           Positioned(
               top: 4, right: 4,
               child: _getBadgeCart(context))

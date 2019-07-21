@@ -3,6 +3,7 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_shopping_demo/data/models/banner.dart';
 import 'package:flutter_shopping_demo/data/models/category.dart';
+import 'package:flutter_shopping_demo/search/root_search_widget.dart';
 import 'package:flutter_shopping_demo/widgets/category_widget.dart';
 import 'package:flutter_shopping_demo/widgets/product_widget.dart';
 import 'package:flutter_shopping_demo/widgets/slider/group_search_trend.dart';
@@ -28,20 +29,26 @@ class _HomeWidgetState extends State<HomeWidget> {
                 padding: EdgeInsets.fromLTRB(16, 12, 16, 12),
                 height: 56,
                 color: Theme.of(context).primaryColor,
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadiusDirectional.all(Radius.circular(16))
+                child: InkWell(
+                  child: Container(
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadiusDirectional.all(Radius.circular(16))
+                    ),
+                    child: Row(
+                      children: <Widget>[
+                        Padding(padding: EdgeInsets.fromLTRB(12, 4, 8, 4), child: Icon(Icons.search, size: 16, color: Theme.of(context).hintColor,),),
+                        Text("Tìm kiếm", style: Theme.of(context).textTheme.caption.copyWith(
+                            color: Theme.of(context).hintColor
+                        ),)
+                      ],
+                    ),
                   ),
-                  child: Row(
-                    children: <Widget>[
-
-                      Padding(padding: EdgeInsets.fromLTRB(12, 4, 8, 4), child: Icon(Icons.search, size: 16, color: Theme.of(context).hintColor,),),
-                      Text("Tìm kiếm", style: Theme.of(context).textTheme.caption.copyWith(
-                        color: Theme.of(context).hintColor
-                      ),)
-                    ],
-                  ),
+                  onTap: () {
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+                      return RootSearchWidget();
+                    }));
+                  },
                 )
               )),
         )

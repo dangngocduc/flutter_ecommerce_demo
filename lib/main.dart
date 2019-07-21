@@ -4,10 +4,13 @@ import 'package:flutter_shopping_demo/bloc/cart/cart_bloc.dart';
 import 'package:flutter_shopping_demo/carts/carts_widget.dart';
 import 'package:flutter_shopping_demo/categories/categories_widget.dart';
 import 'package:flutter_shopping_demo/home/home_widget.dart';
+import 'package:flutter_shopping_demo/search/root_search_widget.dart';
 import 'package:flutter_shopping_demo/theme/dynamic_theme.dart';
 import 'package:flutter_shopping_demo/widgets/bottom_item.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import 'bloc/search/bloc.dart';
 
 void main() async {
   SharedPreferences _sharedPreferences = await SharedPreferences.getInstance();
@@ -20,13 +23,14 @@ class MyApp extends StatelessWidget {
 
   MyApp({@required this.sharedPreferences});
 
-  ThemeData getThemeData(isLightTheme) {
+  ThemeData getThemeData(isLightTheme, context) {
     if (isLightTheme) {
       return ThemeData.light().copyWith(
           primaryColor: Colors.red[900],
           hintColor: Colors.grey,
           cardColor: Colors.white,
-          bottomAppBarColor: Colors.white
+
+          bottomAppBarColor: Colors.white,
       );
     } else {
       return ThemeData.dark().copyWith(
@@ -34,7 +38,7 @@ class MyApp extends StatelessWidget {
           hintColor: Colors.grey,
           cardColor: Color(0xff243447),
           scaffoldBackgroundColor: Color(0xff243447),
-          bottomAppBarColor: Color(0xff141d26),
+          bottomAppBarColor: Color(0xff141d26)
       );
 
     }
@@ -44,10 +48,13 @@ class MyApp extends StatelessWidget {
     if (isLightTheme) {
       return CustomColor(
           onBottomAppBarColor: Colors.red[900],
+          colorTextChipSearch: Colors.black87,
           onBottomAppBarColorDisable: Colors.grey);
+
     } else {
       return CustomColor(
           onBottomAppBarColor: Colors.white,
+          colorTextChipSearch: Colors.black87,
           onBottomAppBarColorDisable: Colors.grey
       );
     }
@@ -57,12 +64,16 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider<CartBloc>.value(value: CartBloc())
+        ChangeNotifierProvider<CartBloc>.value(value: CartBloc()),
+        ChangeNotifierProvider<SearchBloc>.value(value: SearchBloc())
       ],
       child: DynamicTheme(
-        child: RootWidget(),
+        child: MaterialApp(
+          theme: getThemeData(true, context),
+          home: RootWidget(),
+        ),
         data: (isLightTheme) {
-          return getThemeData(isLightTheme);
+          return getThemeData(isLightTheme, context);
         },
         customColorBuilder: (isLightTheme) {
           return getCustomColor(isLightTheme);

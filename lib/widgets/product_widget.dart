@@ -8,8 +8,10 @@ class ProductWidget extends StatelessWidget {
 
     return InkWell(
       child: Container(
+        decoration: ShapeDecoration(shape: RoundedRectangleBorder(
+            side: Divider.createBorderSide(context)
+        )),
         padding: EdgeInsets.all(8),
-        color: Theme.of(context).cardColor,
         width: width * 0.4,
         child: FittedBox(
           fit: BoxFit.scaleDown,
