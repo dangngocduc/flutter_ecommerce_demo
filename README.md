@@ -10,5 +10,7 @@ A new Flutter Application Shopping Demo
 |---|---|---|
 
 ### DarkTheme
+|---|---|---|
+|  ![Day1](demo/day1_home_ver2.png) | ![Day1](demo/day1_home_ver3.png)   | ![Day1](demo/day2_category.png)   |
 |  ![Day1](demo/day3/Screenshot_20190721-155553.png) | ![Day1](demo/day3/Screenshot_20190721-155601.png)   |![Day1](demo/day3/Screenshot_20190721-155606.png) |
 |  ![Day1](demo/day3/Screenshot_20190721-155611.png) |  |   |
