@@ -18,7 +18,9 @@ class CategoryWidgetItem extends StatelessWidget {
         ],
       ),
       decoration: BoxDecoration(
-        border: BorderDirectional(bottom: BorderSide(width: 0.5, color: Colors.grey[200]))
+        border: BorderDirectional(
+            bottom: Divider.createBorderSide(context)
+        )
       ),
     );
   }

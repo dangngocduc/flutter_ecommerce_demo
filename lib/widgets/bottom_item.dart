@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_shopping_demo/theme/dynamic_theme.dart';
 
 
 class BottomItemWidget  extends StatefulWidget {
@@ -42,7 +43,7 @@ Widget build(BuildContext context) {
                     child: Icon(
                       widget.icon,
                       size: 24,
-                      color: controller.index == widget.index ? Theme.of(context).colorScheme.onPrimary : Theme.of(context).colorScheme.onPrimary.withOpacity(0.5),
+                      color: controller.index == widget.index ? DynamicTheme.of(context).customColor.onBottomAppBarColor : DynamicTheme.of(context).customColor.onBottomAppBarColorDisable,
                   ),),
                   Positioned(
                       top: 0,
@@ -66,7 +67,7 @@ Widget build(BuildContext context) {
               child: Text(
                 widget.title,
                 style: Theme.of(context).textTheme.caption.copyWith(
-                    color: controller.index == widget.index ? Theme.of(context).colorScheme.onPrimary : Theme.of(context).colorScheme.onPrimary.withOpacity(0.5)
+                    color: controller.index == widget.index ? DynamicTheme.of(context).customColor.onBottomAppBarColor : DynamicTheme.of(context).customColor.onBottomAppBarColorDisable
                 ),
               ),
             )

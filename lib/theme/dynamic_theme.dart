@@ -59,8 +59,9 @@ class DynamicTheme extends InheritedWidget {
 
 
 class CustomColor {
-  final Color backgroundSendChat;
-  final Color segmentedBorder;
-  CustomColor({this.backgroundSendChat, this.segmentedBorder});
+  final Color onBottomAppBarColor;
+  final Color onBottomAppBarColorDisable;
+
+  CustomColor({this.onBottomAppBarColor, this.onBottomAppBarColorDisable});
 }
 

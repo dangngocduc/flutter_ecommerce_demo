@@ -26,6 +26,7 @@ class MyApp extends StatelessWidget {
           primaryColor: Colors.red[900],
           hintColor: Colors.grey,
           cardColor: Colors.white,
+          bottomAppBarColor: Colors.white
       );
     } else {
       return ThemeData.dark().copyWith(
@@ -40,7 +41,16 @@ class MyApp extends StatelessWidget {
   }
 
   CustomColor getCustomColor(isLightTheme) {
-    return CustomColor();
+    if (isLightTheme) {
+      return CustomColor(
+          onBottomAppBarColor: Colors.red[900],
+          onBottomAppBarColorDisable: Colors.grey);
+    } else {
+      return CustomColor(
+          onBottomAppBarColor: Colors.white,
+          onBottomAppBarColorDisable: Colors.grey
+      );
+    }
   }
   // This widget is the root of your application.
   @override
@@ -109,7 +119,7 @@ class _HomePageState extends State<HomePage>
               ),
             ),
             Material(
-              color: Theme.of(context).primaryColor,
+              color: Theme.of(context).bottomAppBarColor,
               shadowColor: Colors.black,
               elevation: 4.0,
               child: SafeArea(child: Container(
