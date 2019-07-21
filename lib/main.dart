@@ -4,12 +4,44 @@ import 'package:flutter_shopping_demo/bloc/cart/cart_bloc.dart';
 import 'package:flutter_shopping_demo/carts/carts_widget.dart';
 import 'package:flutter_shopping_demo/categories/categories_widget.dart';
 import 'package:flutter_shopping_demo/home/home_widget.dart';
+import 'package:flutter_shopping_demo/theme/dynamic_theme.dart';
 import 'package:flutter_shopping_demo/widgets/bottom_item.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-void main() => runApp(MyApp());
+void main() async {
+  SharedPreferences _sharedPreferences = await SharedPreferences.getInstance();
+  runApp(MyApp(sharedPreferences: _sharedPreferences));
+}
 
 class MyApp extends StatelessWidget {
+
+  final SharedPreferences sharedPreferences;
+
+  MyApp({@required this.sharedPreferences});
+
+  ThemeData getThemeData(isLightTheme) {
+    if (isLightTheme) {
+      return ThemeData.light().copyWith(
+          primaryColor: Colors.red[900],
+          hintColor: Colors.grey,
+          cardColor: Colors.white,
+      );
+    } else {
+      return ThemeData.dark().copyWith(
+          primaryColor: Color(0xff141d26),
+          hintColor: Colors.grey,
+          cardColor: Color(0xff243447),
+          scaffoldBackgroundColor: Color(0xff243447),
+          bottomAppBarColor: Color(0xff141d26),
+      );
+
+    }
+  }
+
+  CustomColor getCustomColor(isLightTheme) {
+    return CustomColor();
+  }
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -17,14 +49,36 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider<CartBloc>.value(value: CartBloc())
       ],
-      child: MaterialApp(
-        title: 'Flutter Demo',
-        theme: ThemeData(
-          primarySwatch: Colors.red,
-        ),
-        home: HomePage(),
+      child: DynamicTheme(
+        child: RootWidget(),
+        data: (isLightTheme) {
+          return getThemeData(isLightTheme);
+        },
+        customColorBuilder: (isLightTheme) {
+          return getCustomColor(isLightTheme);
+        } ,
+        prefs: sharedPreferences,
       ),
     );
+  }
+}
+
+
+class RootWidget extends StatelessWidget{
+  @override
+  Widget build(BuildContext context) {
+    return ValueListenableBuilder(valueListenable: DynamicTheme.of(context).lightTheme,
+        builder: (context, islight, _) {
+            return MaterialApp(
+              theme: DynamicTheme.of(context).themeData,
+              routes: {
+                '/' : (context) {
+                  return HomePage();
+                },
+              },
+              initialRoute: '/',
+            );
+        });
   }
 }
 
@@ -39,37 +93,39 @@ class _HomePageState extends State<HomePage>
   Widget build(BuildContext context) {
     CartBloc cartBloc = Provider.of<CartBloc>(context);
 
-    return DefaultTabController(length: 4, child: Container(
-      child: Column(
-        children: <Widget>[
-          Flexible(
-            child: TabBarView(
-              children: [
-                HomeWidget(),
-                CategoriesWidget(),
-                CartsWidget(),
-                AccountWidget()
-              ],
-            ),
-          ),
-          Material(
-            shadowColor: Colors.black,
-            shape: BorderDirectional(top: BorderSide(color: Colors.grey[200], width: 1)),
-            elevation: 16.0,
-            child: SafeArea(child: Container(
-              height: 60,
-              color: Colors.white,
-              child: Row(
-                children: <Widget>[
-                  Expanded(child: BottomItemWidget(title: "Adayroi", icon: Icons.home, index: 0)),
-                  Expanded(child: BottomItemWidget(title: "Danh Mục", icon: Icons.category, index: 1,)),
-                  Expanded(child: BottomItemWidget(title: "Giỏ hàng", icon: Icons.shopping_cart, index: 2, notification: cartBloc.getCounterCart(),)),
-                  Expanded(child: BottomItemWidget(title: "Cá nhân", icon: Icons.account_circle, index: 3,)),
+    return DefaultTabController(
+        length: 4, child: Scaffold(
+      body: Container(
+        child: Column(
+          children: <Widget>[
+            Flexible(
+              child: TabBarView(
+                children: [
+                  HomeWidget(),
+                  CategoriesWidget(),
+                  CartsWidget(),
+                  AccountWidget()
                 ],
               ),
-            ), bottom: true, top: false,),
-          ),
-        ],
+            ),
+            Material(
+              color: Theme.of(context).primaryColor,
+              shadowColor: Colors.black,
+              elevation: 4.0,
+              child: SafeArea(child: Container(
+                height: 60,
+                child: Row(
+                  children: <Widget>[
+                    Expanded(child: BottomItemWidget(title: "Adayroi", icon: Icons.home, index: 0)),
+                    Expanded(child: BottomItemWidget(title: "Danh Mục", icon: Icons.category, index: 1,)),
+                    Expanded(child: BottomItemWidget(title: "Giỏ hàng", icon: Icons.shopping_cart, index: 2, notification: cartBloc.getCounterCart(),)),
+                    Expanded(child: BottomItemWidget(title: "Cá nhân", icon: Icons.account_circle, index: 3,)),
+                  ],
+                ),
+              ), bottom: true, top: false,),
+            ),
+          ],
+        ),
       ),
     ));
   }

@@ -6,7 +6,7 @@ class AccountLocationWidget extends StatelessWidget {
     double width = MediaQuery.of(context).size.width;
 
     return Container(
-      color: Colors.white,
+      color: Theme.of(context).cardColor,
       height: 64,
       width: width,
       child: FittedBox(
@@ -32,7 +32,7 @@ class AccountLocationWidget extends StatelessWidget {
                   Padding(
                     padding: EdgeInsets.only(top: 4),
                     child: Text("Xã Lạc Vệ, Huyện Tiên Du, Tỉnh Bắc Ninh",
-                        style: Theme.of(context).textTheme.body1.copyWith(color: Colors.black87, fontWeight: FontWeight.w600)),
+                        style: Theme.of(context).textTheme.body1.copyWith(fontWeight: FontWeight.w600)),
                   )
                 ],
               ),

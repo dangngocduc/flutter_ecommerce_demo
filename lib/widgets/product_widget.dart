@@ -8,7 +8,7 @@ class ProductWidget extends StatelessWidget {
 
     return InkWell(
       child: Container(
-        color: Colors.white,
+        color: Theme.of(context).cardColor,
         width: width * 0.4,
         child: Column(
           children: <Widget>[
@@ -16,7 +16,7 @@ class ProductWidget extends StatelessWidget {
               width: width * 0.4,
               height: width * 0.4,
               child: Image.network(
-                  "https://media-ak.static-adayroi.com/240_240/70/h03/hc5/26394022641694.jpg"),
+                  "https://cdn.tgdd.vn/Products/Images/42/114115/iphone-x-64gb-1-400x460-1-400x460.png",),
             ),
             SizedBox(
               width: width * 0.36,
@@ -101,9 +101,11 @@ class ProductWidget extends StatelessWidget {
         ),
       ),
       onTap: () {
-        Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-          return ProductDetailWidget();
-        }));
+        Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) {
+              return ProductDetailWidget();
+            },
+        ), );
       },
     );
   }

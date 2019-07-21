@@ -12,28 +12,27 @@ class AccountWidget extends StatefulWidget {
 class _AccountWidgetState extends State<AccountWidget> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.grey[200],
-      child: CustomScrollView(
-        slivers: <Widget>[
-          AccountHeaderWidget(),
-          SliverToBoxAdapter(
-            child:  Container(
-              height: 12,
-              color: Colors.grey[200],
+    return Scaffold(
+      body: Container(
+        child: CustomScrollView(
+          slivers: <Widget>[
+            AccountHeaderWidget(),
+            SliverToBoxAdapter(
+              child:  Divider(
+                height: 12,
+              ),
             ),
-          ),
-          SliverToBoxAdapter(
-            child: AccountLocationWidget(),
-          ),
-          SliverToBoxAdapter(
-            child:  Container(
-              height: 12,
-              color: Colors.grey[200],
+            SliverToBoxAdapter(
+              child: AccountLocationWidget(),
             ),
-          ),
-          AccountGridMenuItemWidget()
-        ],
+            SliverToBoxAdapter(
+              child:  Divider(
+                height: 12,
+              ),
+            ),
+            AccountGridMenuItemWidget()
+          ],
+        ),
       ),
     );
   }

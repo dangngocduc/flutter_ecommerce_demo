@@ -22,12 +22,12 @@ class _HomeWidgetState extends State<HomeWidget> {
         fromHeight(56),
         child: Material(
           elevation: 4,
-          color: Colors.red,
+          color: Theme.of(context).primaryColor,
           child: SafeArea(
               child: Container(
                 padding: EdgeInsets.fromLTRB(16, 12, 16, 12),
                 height: 56,
-                color: Colors.red,
+                color: Theme.of(context).primaryColor,
                 child: Container(
                   decoration: BoxDecoration(
                     color: Colors.white,
@@ -36,8 +36,10 @@ class _HomeWidgetState extends State<HomeWidget> {
                   child: Row(
                     children: <Widget>[
 
-                      Padding(padding: EdgeInsets.fromLTRB(12, 4, 8, 4), child: Icon(Icons.search, size: 16,),),
-                      Text("Tìm kiếm", style: Theme.of(context).textTheme.caption,)
+                      Padding(padding: EdgeInsets.fromLTRB(12, 4, 8, 4), child: Icon(Icons.search, size: 16, color: Theme.of(context).hintColor,),),
+                      Text("Tìm kiếm", style: Theme.of(context).textTheme.caption.copyWith(
+                        color: Theme.of(context).hintColor
+                      ),)
                     ],
                   ),
                 )

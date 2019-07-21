@@ -15,12 +15,12 @@ class _CartsWidgetState extends State<CartsWidget> {
           preferredSize: Size.fromHeight(56),
           child: Material(
             elevation: 4,
-            color: Colors.red,
+            color: Theme.of(context).primaryColor,
             child: SafeArea(
                 child: Container(
                     padding: EdgeInsets.fromLTRB(16, 12, 16, 12),
                     height: 56,
-                    color: Colors.red,
+                    color: Theme.of(context).primaryColor,
                     child: Center(
                       child: Text(
                         "Giỏ hàng của bạn",

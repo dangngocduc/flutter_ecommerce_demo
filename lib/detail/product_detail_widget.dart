@@ -22,6 +22,7 @@ class _ProductDetailWidgetState extends State<ProductDetailWidget> {
           child: SafeArea(
               child: Material(
             elevation: 2,
+            color: Theme.of(context).primaryColor,
             child: Row(
               children: <Widget>[
                 IconButton(icon: Icon(Icons.close), onPressed: () {
@@ -29,7 +30,9 @@ class _ProductDetailWidgetState extends State<ProductDetailWidget> {
                 }),
                 Spacer(),
                 IconButtonCart(),
-                IconButton(icon: Icon(Icons.home), onPressed: () {}),
+                IconButton(icon: Icon(Icons.home), onPressed: () {
+                  Navigator.popUntil(context, (ModalRoute.withName('/')));
+                }),
               ],
             ),
           )),
@@ -59,15 +62,15 @@ class _ProductDetailWidgetState extends State<ProductDetailWidget> {
       ),
       bottomNavigationBar: Container(
         height: 48,
-        color: Colors.white,
         padding: EdgeInsets.only(left: 16, right: 16, top: 4, bottom: 4),
-        child: OutlineButton(
+        child: RaisedButton(
+            color: Theme.of(context).primaryColor,
             onPressed: () {
               Provider.of<CartBloc>(context).dispatch(
                   AddProductEvent(product: TestProduct(id: "123"))
               );
             },
-            child: Text("Add to cart")),
+            child: Text("Add to cart", style: Theme.of(context).textTheme.button.copyWith(color: Theme.of(context).colorScheme.onPrimary),)),
       ),
     );
   }

@@ -29,8 +29,8 @@ class AccountMenuItemWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
         decoration: BoxDecoration(
-          color: Colors.white,
-          border: Border.all(width: 0.25, color: Colors.grey[200])
+          color: Theme.of(context).cardColor,
+          border: Border.all(width: 0.25, color: Theme.of(context).dividerColor)
         ),
         padding: EdgeInsets.all(8),
         child: FittedBox(
@@ -47,7 +47,7 @@ class AccountMenuItemWidget extends StatelessWidget {
                   maxLines: 2,
                   textAlign: TextAlign.center,
                   overflow: TextOverflow.ellipsis,
-                  style: Theme.of(context).textTheme.caption.copyWith(fontWeight: FontWeight.w600, color: Colors.black),
+                  style: Theme.of(context).textTheme.caption.copyWith(fontWeight: FontWeight.w600),
                 ),
               )
             ],
