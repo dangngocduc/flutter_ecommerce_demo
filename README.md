@@ -3,7 +3,7 @@
 A new Flutter Application Shopping Demo
 
 ### Beta
-[Link beta](https://betas.to/y7SCHFyN)
+[Link beta](https://betas.to/pDcSD4Gs)
 
 ## Getting Started
 ### LightTheme
