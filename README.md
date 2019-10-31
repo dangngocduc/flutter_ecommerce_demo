@@ -2,6 +2,9 @@
 
 A new Flutter Application Shopping Demo
 
+### Beta
+[Link beta](https://betas.to/y7SCHFyN)
+
 ## Getting Started
 ### LightTheme
 |   |   |   |
